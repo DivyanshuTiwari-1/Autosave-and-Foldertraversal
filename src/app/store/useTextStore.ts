@@ -37,7 +37,7 @@ export const useTextStore = create<TextStore>((set, get) => ({
       } else {
         return { success: false, message: data.message || "Failed to save text" }; // Return error message if failed
       }
-    } catch (error:any) {
+    } catch (error) {
       console.error("Error during save operation:", error);
       return { success: false, message: error.message || "Network error" }; // Handle network errors
     }
