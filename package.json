@@ -34,7 +34,6 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@next/swc-win32-x64-msvc": "^15.1.7",
     "@types/diff-match-patch": "^1.0.36",
     "@types/node": "^20",
     "@types/react": "^19",
