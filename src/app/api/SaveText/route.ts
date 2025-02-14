@@ -14,11 +14,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid diffs format" }, { status: 400 });
     }
 
-    let lastTextUpdate = await TextUpdate.findOne().sort({ createdAt: -1 });
-    let storedText = lastTextUpdate?.text || "";
+    const lastTextUpdate = await TextUpdate.findOne().sort({ createdAt: -1 });
+    const storedText = lastTextUpdate?.text || "";
 
     // Apply the patch
-    let [patchedText, results] = dmp.patch_apply(dmp.patch_make(storedText, diffs), storedText);
+    const [patchedText, results] = dmp.patch_apply(dmp.patch_make(storedText, diffs), storedText);
 
     // Ensure all patches were applied successfully
     if (results.includes(false)) {
