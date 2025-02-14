@@ -1,35 +1,36 @@
+
 {
-    "root": {
-      "name": "My Computer",
-      "type": "folder",
-      "children": [
-        {
-          "name": "Local Disk C:",
-          "type": "folder",
-          "children": [
-            {
-              "name": "Program Files",
-              "type": "folder",
-              "children": [
-                {
-                  "name": "WINDOWS",
-                  "type": "folder",
-                  "children": []
-                }
-              ]
-            },
-            {
-              "name": "Documents and Settings",
-              "type": "folder",
-              "children": []
-            }
-          ]
-        },
-        {
-          "name": "3 1/4 Floppy (A:)",
-          "type": "folder",
-          "children": []
-        }
-      ]
-    }
+  "root": {
+    "name": "My Computer",
+    "type": "folder",
+    "children": [
+      {
+        "name": "Local Disk C:",
+        "type": "folder",
+        "children": [
+          {
+            "name": "Program Files",
+            "type": "folder",
+            "children": [
+              {
+                "name": "WINDOWS",
+                "type": "folder",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Documents and Settings",
+            "type": "folder",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "3 1/4 Floppy (A:)",
+        "type": "folder",
+        "children": []
+      }
+    ]
   }
+}

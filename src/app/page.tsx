@@ -6,7 +6,7 @@ import AutoSaveTextBox from './components/AutoSaveTextBox';
 
 // Simulate fetching data from a JSON file
 const fetchData = async (): Promise<FolderItem> => {
-  const data = await import('../data/data.json');
+  const data = await import('../../public/Data.json');
   return data.default.root;
 };
 
