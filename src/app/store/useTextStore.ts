@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { diff_match_patch } from "diff-match-patch";
-import { NextResponse } from "next/server";
+
 
 interface TextStore {
   text: string;
@@ -37,7 +37,7 @@ export const useTextStore = create<TextStore>((set, get) => ({
       } else {
         return { success: false, message: data.message || "Failed to save text" }; // Return error message if failed
       }
-    } catch (error) {
+    } catch (error:any) {
       console.error("Error during save operation:", error);
       return { success: false, message: error.message || "Network error" }; // Handle network errors
     }

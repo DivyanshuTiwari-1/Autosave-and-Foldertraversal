@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useTextStore } from "../store/useTextStore";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -9,6 +9,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+interface SaveTextResponse {
+  success: boolean;
+  savedText?: string;
+  message?: string;
+}
+
 const AutoSaveTextBox = () => {
   const { text, setText, saveText } = useTextStore();
   const [typing, setTyping] = useState(false);
@@ -16,6 +22,8 @@ const AutoSaveTextBox = () => {
   const [startTime, setStartTime] = useState<Date | null>(null);
   const [endTime, setEndTime] = useState<Date | null>(null);
   const [showSaveSuccess, setShowSaveSuccess] = useState(false);
+
+  const memoizedSaveText = useCallback(() => saveText(), [saveText]);
 
   useEffect(() => {
     if (!startTime) {
@@ -27,13 +35,13 @@ const AutoSaveTextBox = () => {
         setTyping(false);
         setEndTime(new Date());
         
-        saveText()?.then((response: any) => {
+        memoizedSaveText()?.then((response: SaveTextResponse) => {
           if (response?.success) {
-            handleSaveSuccess(response.savedText);
+            handleSaveSuccess(response.savedText || "");
           } else {
             toast.error(response?.message || "Failed to save text");
           }
-        }).catch((error: any) => {
+        }).catch((error: Error) => {
           console.error("Error saving text:", error);
           toast.error("Failed to save text");
         });
@@ -41,8 +49,8 @@ const AutoSaveTextBox = () => {
     }, 500);
     
     return () => clearTimeout(timeout);
-  }, [text, typing, startTime]);
-  
+  }, [text, typing, startTime, memoizedSaveText]);  // ✅ Dependency added
+
   const handleSaveSuccess = (savedText: string) => {
     setSavedText(savedText);
     toast.success("Successfully saved!");
